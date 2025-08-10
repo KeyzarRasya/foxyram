@@ -32,6 +32,7 @@ struct node *new_node(
 void insert_node(struct linkedlist *ll, struct set *value) {
 	struct node *n = new_node(NULL, value, NULL);
 
+	printf("Insering node : %s:%s\n", value->key, value->val);
 	if (ll->first == NULL) {
 		ll->first = n;
 		ll->last = n;
@@ -50,7 +51,7 @@ void print_linkedlist(struct linkedlist *ll) {
 	struct node *current_node = ll->first;
 
 	while (current_node != NULL) {
-		printf("Value : %s\n", current_node->value->val);
+		printf("%s : %s\n", current_node->value->key, current_node->value->val);
 		current_node = current_node->next;
 	}
 }

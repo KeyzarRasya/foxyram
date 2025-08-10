@@ -28,5 +28,6 @@ int update_set(struct linkedlist *sets, struct set *set);
 char *find_value(struct linkedlist *ll, char *key);
 char *sget(char *key);
 char *strret(int code);
+void print_sets(struct hash_table *t);
 
 #endif

@@ -69,10 +69,15 @@ int update_set(struct linkedlist *sets, struct set *set) {
 }
 
 char *find_value(struct linkedlist *ll, char *key) {
+	if (!ll | !ll->first) {
+		return NULL;
+	}
 	struct node *current_node = ll->first;
 	char *value = NULL;
 
+	printf("Current node %s\n", current_node->value->val);
 	while (current_node != NULL) {
+		printf("%s | %s\n", key, current_node->value->key);
 		if (strcmp(key, current_node->value->key) == 0) {
 			value = current_node->value->val;
 		}
@@ -115,4 +120,15 @@ char *strret(int code) {
 		break;
 	}
 
+}
+
+void print_sets(struct hash_table *t) {
+	int i = 0;
+
+	while (i < MAX_SET) {
+		struct linkedlist *ll = t->sets[i];
+		printf("Index %d\n", i);
+		print_linkedlist(ll);
+		i++;
+	}
 }

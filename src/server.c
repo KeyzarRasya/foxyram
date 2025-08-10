@@ -54,6 +54,13 @@ void run(struct foxyram *fram){
 	server_addr.sin_port = htons(fram->port);
 	inet_pton(AF_INET, fram->ip_addr, &server_addr.sin_addr);
 
+	int opt = 1;
+	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
+		perror("Failed to set sock options");
+		close(fd);
+		return;
+	}
+
 	if (bind(fd, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1 ) {
 		perror("Failed to bind");
 		close(fd);
@@ -81,7 +88,7 @@ void run(struct foxyram *fram){
 		char buff[1024];
 
 		while (1) {
-			int n = recv(c, buff, sizeof(buff), 0);
+			int n = recv(c, buff, sizeof(buff) - 1, 0);
 			if (n <= 0) {
 				break;
 			}
@@ -91,7 +98,7 @@ void run(struct foxyram *fram){
 			char *res = fr_execute(fram, buff);
 
 			send(c, res, strlen(res), 0);
-			free(res);
+			
 		}
 
 		close(c);
@@ -120,8 +127,8 @@ char *fr_execute(struct foxyram *fram, char *command) {
 	if (strcmp(fram->args[0], "set") == 0) {
 		struct set *set =
 			malloc(sizeof(struct set));
-		set->key = fram->args[1];
-		set->val = fram->args[2];
+		set->key = strdup(fram->args[1]);
+		set->val = strdup(fram->args[2]);
 		int insert = 
 			insert_set(fram->hash_table, set);
 		return strret(insert);
@@ -132,13 +139,13 @@ char *fr_execute(struct foxyram *fram, char *command) {
 		struct linkedlist *ll = fram->hash_table->sets[index];
 		char *value = find_value(ll, fram->args[1]);
 		if (!value) {
-			return "No values found";
+			return strdup("No Values were found");
 		} else {
-			return value;
+			return strdup(value);
 		}
 	}
 
-	return "Unknown command";
+	return strdup("Unknown COmmand");
 }
 
 void cleanup(struct foxyram *fram) {
