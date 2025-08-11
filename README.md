@@ -1,5 +1,5 @@
 
-# Ridoare
+# Ridaore
 
 Ridaore is an Open Source in Memory Data Stores. the purpose of this project it just for learning purpose in Open Source World. Not to becoming as good as Redis.
 
@@ -37,7 +37,7 @@ ridaore-cli
 ```
 2. You will see 
 ```bash
-FoxyRam>
+Ridaore>
 ```
 Congrats, you can start store your data in Memory.
 
