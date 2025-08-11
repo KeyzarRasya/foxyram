@@ -2,14 +2,14 @@
 #define CLIENT
 
 #include <stdint.h>
-struct foxyram_cli{
+struct ridaore_cli{
 	char *host;
 	uint16_t port;
 	int fd;
 };
 
-struct foxyram_cli* init(char *host, uint16_t port);
-void cli_connect(struct foxyram_cli *fram);
+struct ridaore_cli* init(char *host, uint16_t port);
+void cli_connect(struct ridaore_cli *fram);
 
 
 #endif

@@ -11,9 +11,9 @@
 
 #include "../include/client.h"
 
-struct foxyram_cli* init(char *host, uint16_t port) {
-	struct foxyram_cli *fram_cli;
-	fram_cli = malloc(sizeof(struct foxyram_cli));
+struct ridaore_cli* init(char *host, uint16_t port) {
+	struct ridaore_cli *fram_cli;
+	fram_cli = malloc(sizeof(struct ridaore_cli));
 
 	if (fram_cli == NULL) {
 		perror("Failed to allocate memory");
@@ -26,7 +26,7 @@ struct foxyram_cli* init(char *host, uint16_t port) {
 	return fram_cli;
 }
 
-void cli_connect(struct foxyram_cli *fram) {
+void cli_connect(struct ridaore_cli *fram) {
 	int fd;
 	struct sockaddr_in server_addr;
 

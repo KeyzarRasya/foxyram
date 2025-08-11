@@ -12,12 +12,12 @@
 #include "../include/ds/linkedlist.h"
 #include "../include/server.h"
 
-struct foxyram* init(char *ip_addr, uint16_t port) {
-	struct foxyram *fram;
-	fram = malloc(sizeof(struct foxyram));
+struct ridaore* init(char *ip_addr, uint16_t port) {
+	struct ridaore *fram;
+	fram = malloc(sizeof(struct ridaore));
 
 	if (fram == NULL) {
-		perror("Failed to initiate foxyram");
+		perror("Failed to initiate ridaore");
 		return NULL;
 	}
 	
@@ -28,7 +28,7 @@ struct foxyram* init(char *ip_addr, uint16_t port) {
 	return fram;
 }
 
-void run(struct foxyram *fram){ 
+void run(struct ridaore *fram){ 
 	system("clear");
 	int fd;
 	struct sockaddr_in server_addr;
@@ -105,7 +105,7 @@ void run(struct foxyram *fram){
 	close(fd);
 }
 
-void parse_command(struct foxyram *fram) {
+void parse_command(struct ridaore *fram) {
 	int i = 0;
 	char *token = strtok(fram->command, " ");
 	
@@ -118,7 +118,7 @@ void parse_command(struct foxyram *fram) {
 	fram->args[i] = NULL;
 }
 
-char *fr_execute(struct foxyram *fram, char *command) {
+char *fr_execute(struct ridaore *fram, char *command) {
 	int i = 0;
 	fram->command = command;
 	parse_command(fram);
@@ -147,7 +147,7 @@ char *fr_execute(struct foxyram *fram, char *command) {
 	return strdup("Unknown Command");
 }
 
-void cleanup(struct foxyram *fram) {
+void cleanup(struct ridaore *fram) {
 	int i = 0;
 	while (i < MAX_SET) {
 		free(fram->hash_table->sets[i]);

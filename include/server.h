@@ -6,7 +6,7 @@
 
 #define MAX_ARGS	10
 
-struct foxyram{
+struct ridaore{
 	char *ip_addr;
 	uint16_t port;
 	char *command;
@@ -14,10 +14,10 @@ struct foxyram{
 	struct hash_table *hash_table;
 };
 
-struct foxyram* init(char *ip_addr, uint16_t port);
-void run(struct foxyram *fram);
-char *fr_execute(struct foxyram *fram, char *command);
-void parse_command(struct foxyram *fram);
-void cleanup(struct foxyram *fram);
+struct ridaore* init(char *ip_addr, uint16_t port);
+void run(struct ridaore *fram);
+char *fr_execute(struct ridaore *fram, char *command);
+void parse_command(struct ridaore *fram);
+void cleanup(struct ridaore *fram);
 
 #endif

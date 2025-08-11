@@ -7,9 +7,9 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-struct foxyram_shell *shell_init(struct foxyram_cli *client) {
-	struct foxyram_shell *shell;
-	shell = malloc(sizeof(struct foxyram_shell));
+struct ridaore_shell *shell_init(struct ridaore_cli *client) {
+	struct ridaore_shell *shell;
+	shell = malloc(sizeof(struct ridaore_shell));
 
 	if (shell == NULL) {
 		perror("Failed to allocate shell memory");
@@ -22,15 +22,15 @@ struct foxyram_shell *shell_init(struct foxyram_cli *client) {
 	return shell;
 }
 
-void run(struct foxyram_shell *sh) {
+void run(struct ridaore_shell *sh) {
 	while (1) {
 		read_command(sh);
 		execute_command(sh);
 	}
 }
 
-void read_command(struct foxyram_shell *sh) {
-	printf("FoxyRam> ");
+void read_command(struct ridaore_shell *sh) {
+	printf("Ridaore> ");
 
 	fflush(stdout);
 	fgets(sh->input, MAX_INPUT, stdin);
@@ -41,7 +41,7 @@ void read_command(struct foxyram_shell *sh) {
 	}
 }	
 
-void parse_command(struct foxyram_shell *sh) {
+void parse_command(struct ridaore_shell *sh) {
 	int i = 0;
 
 	char *token = strtok(sh->input, " ");
@@ -55,7 +55,7 @@ void parse_command(struct foxyram_shell *sh) {
 	sh->arguments[i] = NULL;
 }
 
-void execute_command(struct foxyram_shell *sh) {
+void execute_command(struct ridaore_shell *sh) {
 	char res[1024];
 	if (send(sh->client->fd, sh->input, strlen(sh->input), 0) > 0) {
 		int n = recv(sh->client->fd, res, sizeof(res), 0);
@@ -70,7 +70,7 @@ void execute_command(struct foxyram_shell *sh) {
 	}
 }
 
-void print_args(struct foxyram_shell *sh) {
+void print_args(struct ridaore_shell *sh) {
 	int i = 0;
 
 	while (sh->arguments[i] != NULL) {

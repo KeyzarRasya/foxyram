@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(foxyram)
+project(ridaore)
 
 include_directories(include)
 
@@ -18,30 +18,30 @@ set(
 	src/shell.c
 )
 
-file(WRITE ${CMAKE_BINARY_DIR}/foxyram.service
+file(WRITE ${CMAKE_BINARY_DIR}/ridaore.service
 "
 [Unit]
-Description=Foxyram Server
+Description=Ridaore Server
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/foxyram
+ExecStart=/usr/local/bin/ridaore
 
 [Install]
 WantedBy=default.target
 "
 )
 
-add_executable(foxyram ${SERVER_SOURCES})
-add_executable(foxyram-cli ${CLI_SOURCES})
+add_executable(ridaore ${SERVER_SOURCES})
+add_executable(ridaore-cli ${CLI_SOURCES})
 
-install(TARGETS foxyram DESTINATION /usr/local/bin)
-install(FILES ${CMAKE_BINARY_DIR}/foxyram.service DESTINATION /etc/systemd/system)
+install(TARGETS ridaore DESTINATION /usr/local/bin)
+install(FILES ${CMAKE_BINARY_DIR}/ridaore.service DESTINATION /etc/systemd/system)
 
-install(TARGETS foxyram-cli DESTINATION /usr/local/bin)
+install(TARGETS ridaore-cli DESTINATION /usr/local/bin)
 
 add_custom_target(enable_service
 	COMMAND systemctl daemon-reload
-	COMMAND systemctl enable foxyram.service
-	COMMAND systemctl start foxyram.service
+	COMMAND systemctl enable ridaore.service
+	COMMAND systemctl start ridaore.service
 )

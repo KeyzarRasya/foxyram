@@ -6,17 +6,17 @@
 #define MAX_INPUT 	1024
 #define MAX_ARGS	10
 
-struct foxyram_shell{
-	struct foxyram_cli *client;
+struct ridaore_shell{
+	struct ridaore_cli *client;
 	char input[MAX_INPUT];
 	char *arguments[MAX_ARGS];
 };
 
-struct foxyram_shell *shell_init(struct foxyram_cli *client);
-void run(struct foxyram_shell *sh);
-void read_command(struct foxyram_shell *sh);
-void parse_command(struct foxyram_shell *sh);
-void execute_command(struct foxyram_shell *sh);
-void print_args(struct foxyram_shell *sh);
+struct ridaore_shell *shell_init(struct ridaore_cli *client);
+void run(struct ridaore_shell *sh);
+void read_command(struct ridaore_shell *sh);
+void parse_command(struct ridaore_shell *sh);
+void execute_command(struct ridaore_shell *sh);
+void print_args(struct ridaore_shell *sh);
 
 #endif
