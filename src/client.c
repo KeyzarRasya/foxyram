@@ -45,7 +45,6 @@ void cli_connect(struct foxyram_cli *fram) {
 		close(fd);
 		return;
 	}
-	printf("%d", fd);
 	fram->fd = fd;
 }
 

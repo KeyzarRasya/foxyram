@@ -63,7 +63,7 @@ void execute_command(struct foxyram_shell *sh) {
 			printf("No message were received");
 			return;
 		}
-
+		
 		res[n] = '\0';
 		printf("%s\n", res);
 

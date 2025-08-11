@@ -94,7 +94,6 @@ void run(struct foxyram *fram){
 			}
 
 			buff[n] = '\0';	
-			printf("[ Foxyram Server ]: Received %s\n", buff);
 			char *res = fr_execute(fram, buff);
 
 			send(c, res, strlen(res), 0);
@@ -145,7 +144,7 @@ char *fr_execute(struct foxyram *fram, char *command) {
 		}
 	}
 
-	return strdup("Unknown COmmand");
+	return strdup("Unknown Command");
 }
 
 void cleanup(struct foxyram *fram) {

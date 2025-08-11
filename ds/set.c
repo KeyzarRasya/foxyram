@@ -46,7 +46,6 @@ int insert_set(struct hash_table *ht, struct set *set) {
 
 	if (!find_value(ht->sets[index], set->key)) {
 		insert_node(ht->sets[index], set);
-		printf("Inserted LL Index %d, Value %s\n", index, set->val);
 		return INSERTED;
 	}
 	
@@ -75,9 +74,7 @@ char *find_value(struct linkedlist *ll, char *key) {
 	struct node *current_node = ll->first;
 	char *value = NULL;
 
-	printf("Current node %s\n", current_node->value->val);
 	while (current_node != NULL) {
-		printf("%s | %s\n", key, current_node->value->key);
 		if (strcmp(key, current_node->value->key) == 0) {
 			value = current_node->value->val;
 		}
